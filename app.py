@@ -15,7 +15,7 @@ CORS(app)
 logging.basicConfig(level=logging.INFO)
 
 # Definição da função de processamento FFT
-def fftfilter(input_path,param3, param4= 'Not', param1 =None, param2 = None):
+def fftfilter(input_path,param1,param2,param3,param4):
     logging.info("Starting fftfilter function")
     logging.info(f"Parameters: {param1}, {param2}, {param3}, {param4}")
 
