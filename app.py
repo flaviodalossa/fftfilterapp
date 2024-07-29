@@ -34,7 +34,15 @@ def fftfilter(input_path,param3, param4= 'Not', param1 =None, param2 = None):
 
         y = df.iloc[:, 1].values
         logging.info(f"Using second column as 'y': {y[:5]} (showing first 5)")
-
+        
+        try:
+            lower = float(param1)
+            upper = float(param2)
+            fs = float(param3)
+        except ValueError as e:
+            error_message = "Certifique-se de que os parâmetros param1, param2 e param3 sejam números (float)."
+            logging.error(error_message)
+            return error_message, 400
     
         intercept = param4
         if intercept not in ["Yes", "Not"]:
