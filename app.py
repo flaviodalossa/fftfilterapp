@@ -20,7 +20,7 @@ def fftfilter(input_path,param1,param2,param3,param4):
     logging.info(f"Parameters: {param1}, {param2}, {param3}, {param4}")
 
     try:
-        df = pd.read_csv(input_path, skiprows=1)
+        df = pd.read_csv(input_path)
         logging.info("CSV file read successfully")
     except Exception as e:
         logging.error(f"Error reading CSV file: {e}")
