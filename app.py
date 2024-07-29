@@ -55,7 +55,7 @@ def fftfilter(input_path,param1,param2,param3,param4):
         N = len(y)
         far = (fs / N) * np.arange(N)
 
-        if upper is not None:
+        if upper >=0:
             indices2 = np.where(far <= upper)[0]
             if len(indices2) > 0:
                 index2 = indices2[-1]
@@ -64,7 +64,7 @@ def fftfilter(input_path,param1,param2,param3,param4):
             else:
                 logging.warning("No indices found for upper frequency limit.")
 
-        if lower is not None:
+        if lower >=0:
             indices1 = np.where(far >= lower)[0]
             if len(indices1) > 0:
                 index1 = indices1[0]
