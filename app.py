@@ -15,7 +15,7 @@ CORS(app)
 logging.basicConfig(level=logging.INFO)
 
 # Definição da função de processamento FFT
-def fftfilter(input_path,param3, param4, param1 =None, param2 = None):
+def fftfilter(input_path,param3, param4= 'Not', param1 =None, param2 = None):
     logging.info("Starting fftfilter function")
     logging.info(f"Parameters: {param1}, {param2}, {param3}, {param4}")
 
@@ -35,7 +35,7 @@ def fftfilter(input_path,param3, param4, param1 =None, param2 = None):
         y = df.iloc[:, 1].values
         logging.info(f"Using second column as 'y': {y[:5]} (showing first 5)")
 
-
+    
         intercept = param4
         if intercept not in ["Yes", "Not"]:
             error_message = "O parâmetro param4 deve ser 'Yes' ou 'Not'."
@@ -43,6 +43,7 @@ def fftfilter(input_path,param3, param4, param1 =None, param2 = None):
             return error_message, 400
 
         Fft_smooth = fft(y)
+        first=Fft_smooth[0]
         N = len(y)
         far = (fs / N) * np.arange(N)
 
@@ -66,7 +67,7 @@ def fftfilter(input_path,param3, param4, param1 =None, param2 = None):
                 logging.warning("No indices found for lower frequency limit.")
 
         if intercept == "Yes":
-            Fft_smooth[0] = Fft_smooth[0]
+            Fft_smooth[0] = first
         elif intercept == "Not":
             Fft_smooth[0] = 0
         logging.info(f"Intercept adjusted: {intercept}")
